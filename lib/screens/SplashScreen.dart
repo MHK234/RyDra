@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'HomeScreen.dart';
+import 'WelcomeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,11 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _goToNext() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const MyHomePage(title: 'My App Home'),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 
   @override
