@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rydra/screens/HomeScreen.dart';
 import 'package:rydra/screens/loginScreen.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -117,7 +118,9 @@ class SignupScreenContent extends StatelessWidget {
                     onPressed: () {
                       print("Signup  button pressed");
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => MyHomePage(title: ''),
+                        ),
                       );
                     },
                     child: const Text(
