@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rydra/screens/HomeScreen.dart';
 import 'package:rydra/screens/signupScreen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -62,6 +63,7 @@ class LoginScreenContent extends StatelessWidget {
                   fontSize: 28,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF2E4E6F),
+                  fontFamily: "Sigmar",
                 ),
               ),
               const SizedBox(height: 10),
@@ -121,6 +123,11 @@ class LoginScreenContent extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       print("LOGIN  button pressed");
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MyHomePage(title: 'hello'),
+                        ),
+                      );
                     },
                     child: const Text(
                       "LOGIN",
@@ -128,6 +135,7 @@ class LoginScreenContent extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.white,
                         letterSpacing: 1.5,
+                        fontFamily: "Sigmar",
                       ),
                     ),
                   ),
@@ -158,8 +166,9 @@ class LoginScreenContent extends StatelessWidget {
                         "SIGNUP",
                         style: TextStyle(
                           color: Color(0xFF2E4E6F),
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Sigmar",
                         ),
                       ),
                     ),

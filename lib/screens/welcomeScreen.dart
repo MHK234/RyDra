@@ -61,9 +61,10 @@ class WelcomeScreenContent extends StatelessWidget {
                   fontSize: 38,
                   fontWeight: FontWeight.w900,
                   color: Colors.grey[800],
+                  fontFamily: "Sigmar",
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 20),
 
               // Description Text
               const Text(
@@ -74,7 +75,7 @@ class WelcomeScreenContent extends StatelessWidget {
                   height: 1.4,
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 80),
 
               // Continue Button
               // ...
@@ -97,6 +98,7 @@ class WelcomeScreenContent extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.grey[800],
+                          fontFamily: "Sigmar",
                         ),
                       ),
                       const SizedBox(width: 8),

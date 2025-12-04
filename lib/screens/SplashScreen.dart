@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
               )
-            : Container(color: Colors.black),
+            : Container(color: Colors.white),
       ),
     );
   }

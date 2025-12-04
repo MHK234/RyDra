@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rydra/screens/loginScreen.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -58,6 +59,7 @@ class SignupScreenContent extends StatelessWidget {
                   fontSize: 28,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF2E4E6F),
+                  fontFamily: "Sigmar",
                 ),
               ),
               const SizedBox(height: 10),
@@ -113,7 +115,10 @@ class SignupScreenContent extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      print("LOGIN  button pressed");
+                      print("Signup  button pressed");
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
                     },
                     child: const Text(
                       "SIGNUP",
@@ -121,6 +126,7 @@ class SignupScreenContent extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.white,
                         letterSpacing: 1.5,
+                        fontFamily: "Sigmar",
                       ),
                     ),
                   ),
@@ -141,13 +147,19 @@ class SignupScreenContent extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         print("Login  button pressed");
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "LOGIN",
                         style: TextStyle(
                           color: Color(0xFF2E4E6F),
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Sigmar",
                         ),
                       ),
                     ),
