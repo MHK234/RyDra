@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:rydra/screens/HomeScreen.dart';
+import 'package:rydra/screens/loginScreen.dart';
 
 // The main screen widget
 class WelcomeScreen extends StatelessWidget {
@@ -6,6 +9,13 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
     // Using a LayoutBuilder to get the screen dimensions for responsive layout
     return const Scaffold(body: WelcomeScreenContent());
   }
@@ -67,44 +77,55 @@ class WelcomeScreenContent extends StatelessWidget {
               const SizedBox(height: 40),
 
               // Continue Button
+              // ...
               Align(
                 alignment: Alignment.bottomRight,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Continue',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800],
+                // 1. Wrap the interactive content (the Row) in a GestureDetector
+                child: GestureDetector(
+                  onTap: () {
+                    print('button pressed');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[800],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(
-                          0xFF283593,
-                        ), // Deep Indigo for the button
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFF283593).withOpacity(0.5),
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
+                      const SizedBox(width: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(
+                            0xFF283593,
+                          ), // Deep Indigo for the button
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF283593).withOpacity(0.5),
+                              blurRadius: 10,
+                              offset: const Offset(0, 5),
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(12),
+                        child: const Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.white,
+                          size: 28,
+                        ),
                       ),
-                      padding: const EdgeInsets.all(12),
-                      child: const Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+              // ...
             ],
           ),
         ),
