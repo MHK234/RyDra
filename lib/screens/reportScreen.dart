@@ -4,6 +4,7 @@ import 'package:rydra/components/topNavBar.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});
+  static const routeName = "/reports";
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +71,9 @@ class ReportsScreen extends StatelessWidget {
                     const Text("Cost Distribution", style: bold),
                     const SizedBox(height: 14),
 
-                    _costItem("Fuel", "₹22,000", Colors.red),
-                    _costItem("Parts", "₹18,000", Colors.black),
-                    _costItem("Service/Labor", "₹12,500", Colors.grey),
+                    _costItem("Fuel", "Rs 22,000", Colors.red),
+                    _costItem("Parts", "Rs 18,000", Colors.black),
+                    _costItem("Service/Labor", "Rs 12,500", Colors.amberAccent),
                   ],
                 ),
               ),
@@ -91,7 +92,7 @@ class ReportsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Text(
-                          "₹3.25 / KM\n(Based on 15,000 KM logged)",
+                          "Rs 3.25 / KM\n(Based on 15,000 KM logged)",
                           style: body,
                         ),
                         Text(
@@ -126,7 +127,10 @@ class ReportsScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: const Text("Generate Detailed PDF Report"),
+                  child: const Text(
+                    "Generate Detailed PDF Report",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
 
@@ -139,7 +143,6 @@ class ReportsScreen extends StatelessWidget {
   }
 }
 
-// text styles
 const bold = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 const body = TextStyle(fontSize: 13, height: 1.4);
 

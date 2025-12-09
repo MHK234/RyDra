@@ -5,6 +5,7 @@ import 'package:rydra/screens/reportScreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
+  static const routeName = "/home";
 
   @override
   Widget build(BuildContext context) {

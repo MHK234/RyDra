@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rydra/screens/HomeScreen.dart';
+import 'package:rydra/screens/menuScreen.dart';
 import 'package:rydra/screens/reportScreen.dart';
+import 'package:rydra/screens/sparePartsScreen.dart';
 
 class bottomNavbar extends StatelessWidget {
   const bottomNavbar({super.key});
@@ -16,11 +18,14 @@ class bottomNavbar extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print("Home Button pressed");
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => Homescreen()));
-              ;
+              if (ModalRoute.of(context)?.settings.name !=
+                  Homescreen.routeName) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  Homescreen.routeName,
+                  (route) => false,
+                );
+              }
             },
             child: const Icon(Icons.home, color: Colors.white, size: 28),
           ),
@@ -29,11 +34,10 @@ class bottomNavbar extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
-              print("Analytics Button pressed");
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => ReportsScreen()));
-              ;
+              if (ModalRoute.of(context)?.settings.name !=
+                  ReportsScreen.routeName) {
+                Navigator.pushNamed(context, ReportsScreen.routeName);
+              }
             },
             child: const Icon(Icons.analytics, color: Colors.white, size: 28),
           ),
@@ -42,12 +46,10 @@ class bottomNavbar extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
-              print("Spare Parts Button pressed");
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) => SignupScreen(),
-              //   ),
-              // );;
+              if (ModalRoute.of(context)?.settings.name !=
+                  ReportsScreen.routeName) {
+                Navigator.pushNamed(context, SparePartsScreen.routeName);
+              }
             },
             child: const Icon(Icons.build, color: Colors.white, size: 28),
           ),
@@ -56,12 +58,10 @@ class bottomNavbar extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
-              print("Menu Button pressed");
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) => SignupScreen(),
-              //   ),
-              // );;
+              if (ModalRoute.of(context)?.settings.name !=
+                  ReportsScreen.routeName) {
+                Navigator.pushNamed(context, MenuScreen.routeName);
+              }
             },
             child: const Icon(Icons.menu, color: Colors.white, size: 28),
           ),
