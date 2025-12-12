@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rydra/components/topNavBar.dart';
 import 'package:rydra/screens/HomeScreen.dart';
 
 class Bikedetails extends StatefulWidget {
@@ -34,11 +35,10 @@ class _BikedetailsState extends State<Bikedetails> {
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
           child: Column(
             children: [
-              const SizedBox(height: 10),
-              Image.asset("assets/images/logo.png", height: 70),
-              const SizedBox(height: 35),
+              topnavbar(),
+              const SizedBox(height: 15),
 
-              _inputField("Enter Your Name", nameController, 0),
+              _inputField("Enter Your Name", nameController, false),
               const SizedBox(height: 20),
 
               Row(
@@ -74,10 +74,10 @@ class _BikedetailsState extends State<Bikedetails> {
                 ],
               ),
               const SizedBox(height: 25),
-              _inputField("Enter Bike Model", bikeModelController, 1),
+              _inputField("Enter Bike Model", bikeModelController, true),
               const SizedBox(height: 20),
 
-              _inputField("Enter Odometer Reading", odometerController, 1),
+              _inputField("Enter Odometer Reading", odometerController, true),
 
               const SizedBox(height: 35),
             ],
@@ -116,11 +116,10 @@ class _BikedetailsState extends State<Bikedetails> {
     );
   }
 
-  Widget _inputField(String hint, TextEditingController controller, int type) {
+  Widget _inputField(String hint, TextEditingController controller, bool type) {
     return TextField(
-      obscureText: true,
       controller: controller,
-      keyboardType: type == 1 ? TextInputType.number : TextInputType.text,
+      keyboardType: type ? TextInputType.number : TextInputType.name,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey),
