@@ -47,7 +47,7 @@ class bottomNavbar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (ModalRoute.of(context)?.settings.name !=
-                  ReportsScreen.routeName) {
+                  SparePartsScreen.routeName) {
                 Navigator.pushNamed(context, SparePartsScreen.routeName);
               }
             },
@@ -59,7 +59,7 @@ class bottomNavbar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (ModalRoute.of(context)?.settings.name !=
-                  ReportsScreen.routeName) {
+                  MenuScreen.routeName) {
                 Navigator.pushNamed(context, MenuScreen.routeName);
               }
             },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rydra/screens/HomeScreen.dart';
+import 'package:rydra/screens/bikeDetails.dart';
 import 'package:rydra/screens/loginScreen.dart';
 
 import '../components/bottomClipper.dart';
@@ -120,7 +121,7 @@ class SignupScreenContent extends StatelessWidget {
                     onPressed: () {
                       print("Signup  button pressed");
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Homescreen()),
+                        MaterialPageRoute(builder: (context) => Bikedetails()),
                       );
                     },
                     child: const Text(
