@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rydra/components/inputfield.dart';
 import 'package:rydra/components/topNavBar.dart';
 import 'package:rydra/screens/HomeScreen.dart';
 
@@ -38,7 +39,12 @@ class _BikedetailsState extends State<Bikedetails> {
               topnavbar(),
               const SizedBox(height: 15),
 
-              _inputField("Enter Your Name", nameController, false),
+              InputField(
+                hint: "Enter Your Name",
+                controller: nameController,
+                isNumber: false,
+                isPassword: false,
+              ),
               const SizedBox(height: 20),
 
               Row(
@@ -74,10 +80,20 @@ class _BikedetailsState extends State<Bikedetails> {
                 ],
               ),
               const SizedBox(height: 25),
-              _inputField("Enter Bike Model", bikeModelController, true),
+              InputField(
+                hint: "Enter Bike Model",
+                controller: bikeModelController,
+                isNumber: true,
+                isPassword: false,
+              ),
               const SizedBox(height: 20),
 
-              _inputField("Enter Odometer Reading", odometerController, true),
+              InputField(
+                hint: 'Enter Odometer Reading',
+                controller: odometerController,
+                isNumber: true,
+                isPassword: false,
+              ),
 
               const SizedBox(height: 35),
             ],
@@ -111,23 +127,6 @@ class _BikedetailsState extends State<Bikedetails> {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _inputField(String hint, TextEditingController controller, bool type) {
-    return TextField(
-      controller: controller,
-      keyboardType: type ? TextInputType.number : TextInputType.name,
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.grey),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFFBDBDBD)),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF2E4E6F)),
         ),
       ),
     );

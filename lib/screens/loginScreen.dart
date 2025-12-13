@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rydra/screens/HomeScreen.dart';
+import 'package:rydra/components/inputfield.dart';
 import 'package:rydra/screens/bikeDetails.dart';
 import 'package:rydra/screens/signupScreen.dart' hide BottomWaveClipper;
 import '../components/bottomClipper.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -17,7 +22,7 @@ class LoginScreen extends StatelessWidget {
         statusBarBrightness: Brightness.dark,
       ),
     );
-    // Using a LayoutBuilder to get the screen dimensions for responsive layout
+
     return const Scaffold(
       resizeToAvoidBottomInset: false,
       body: LoginScreenContent(),
@@ -25,23 +30,37 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class LoginScreenContent extends StatelessWidget {
+// ================= LOGIN CONTENT =================
+
+class LoginScreenContent extends StatefulWidget {
   const LoginScreenContent({super.key});
+
+  @override
+  State<LoginScreenContent> createState() => _LoginScreenContentState();
+}
+
+class _LoginScreenContentState extends State<LoginScreenContent> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // 1. Background Image - NOW USING LOCAL ASSET
         Positioned.fill(
           child: Image.asset(
-            // Local asset image as requested by the user
             'assets/images/backgroundImage.png',
             fit: BoxFit.cover,
           ),
         ),
 
-        // 2. Custom Wave Overlay (White container clipped to a wave shape)
         Positioned.fill(
           child: ClipPath(
             clipper: BottomWaveClipper(),
@@ -49,17 +68,14 @@ class LoginScreenContent extends StatelessWidget {
           ),
         ),
 
-        // 3. Content (Text and Button)
         Padding(
           padding: const EdgeInsets.all(28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Use a Spacer to push the content to the bottom half, over the white area
               const Spacer(),
 
-              // Welcome Title
-              Text(
+              const Text(
                 'Sign in',
                 style: TextStyle(
                   fontSize: 28,
@@ -68,42 +84,27 @@ class LoginScreenContent extends StatelessWidget {
                   fontFamily: "Sigmar",
                 ),
               ),
+
               const SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "Enter Email",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF2E4E6F)),
-                  ),
-                ),
+              InputField(
+                hint: "Enter Email",
+                controller: emailController,
+                isNumber: false,
+                isPassword: false,
               ),
+
               const SizedBox(height: 7),
-
-              // Password Field
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Enter Password",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF2E4E6F)),
-                  ),
-                ),
+              InputField(
+                hint: "Enter Password",
+                controller: passwordController,
+                isNumber: false,
+                isPassword: true,
               ),
-              const SizedBox(height: 5),
 
-              // Forgot Password
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-                    print("Forgot Password  button pressed");
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "Forgot Password?",
                     style: TextStyle(fontSize: 13, color: Color(0xFF2E4E6F)),
@@ -111,69 +112,58 @@ class LoginScreenContent extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 2),
+              const SizedBox(height: 10),
 
-              // Login Button
-              Center(
-                child: Container(
-                  width: double.infinity,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF2E4E6F),
-                    borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF2E4E6F),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      print("LOGIN  button pressed");
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Bikedetails()),
-                      );
-                    },
-                    child: const Text(
-                      "LOGIN",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        letterSpacing: 1.5,
-                        fontFamily: "Sigmar",
-                      ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => Bikedetails()),
+                    );
+                  },
+                  child: const Text(
+                    "LOGIN",
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 1.5,
+                      fontFamily: "Sigmar",
+                      color: Color(0xffffffff),
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 9),
+              const SizedBox(height: 12),
 
-              // Sign Up Text
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't Have Account? ",
-                      style: TextStyle(fontSize: 13),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print("Signup  button pressed");
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => SignupScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "SIGNUP",
-                        style: TextStyle(
-                          color: Color(0xFF2E4E6F),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Sigmar",
-                        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't Have Account? "),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => SignupScreen()),
+                      );
+                    },
+                    child: const Text(
+                      "SIGNUP",
+                      style: TextStyle(
+                        color: Color(0xFF2E4E6F),
+                        fontFamily: "Sigmar",
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
