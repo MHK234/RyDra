@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rydra/components/bottomNavBar.dart';
+import 'package:rydra/components/lineChart.dart';
 import 'package:rydra/components/topNavBar.dart';
 import 'package:rydra/screens/reportScreen.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -87,10 +89,16 @@ class Homescreen extends StatelessWidget {
               const SizedBox(height: 10),
 
               Container(
-                height: 150,
                 decoration: _box(),
                 alignment: Alignment.center,
-                child: const Text("Insert Chart Here"),
+                child: GestureDetector(
+                  onTap: () => {
+                    if (ModalRoute.of(context)?.settings.name !=
+                        ReportsScreen.routeName)
+                      {Navigator.pushNamed(context, ReportsScreen.routeName)},
+                  },
+                  child: MonthlyExpenseChart(),
+                ),
               ),
 
               const SizedBox(height: 25),

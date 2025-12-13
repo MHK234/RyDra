@@ -1,5 +1,8 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:rydra/components/barchart.dart';
 import 'package:rydra/components/bottomNavBar.dart';
+import 'package:rydra/components/lineChart.dart';
 import 'package:rydra/components/topNavBar.dart';
 
 class ReportsScreen extends StatelessWidget {
@@ -39,42 +42,14 @@ class ReportsScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Monthly Expense trend
-              _sectionCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Monthly Expense Trend", style: bold),
-                    const SizedBox(height: 15),
-
-                    Container(
-                      height: 170,
-                      alignment: Alignment.center,
-                      child: const Text("Line Chart here"),
-                    ),
-                    const Divider(),
-                    const SizedBox(height: 6),
-                    const Text(
-                      "Average monthly spending: ₹4,500",
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ),
-
+              MonthlyExpenseChart(),
               const SizedBox(height: 20),
 
               // Cost distribution
               _sectionCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Cost Distribution", style: bold),
-                    const SizedBox(height: 14),
-
-                    _costItem("Fuel", "Rs 22,000", Colors.red),
-                    _costItem("Parts", "Rs 18,000", Colors.black),
-                    _costItem("Service/Labor", "Rs 12,500", Colors.amberAccent),
-                  ],
+                  children: [CostDistributionChart()],
                 ),
               ),
 
@@ -102,13 +77,6 @@ class ReportsScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      "[ Compare to Previous Year ]",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.red,
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -145,39 +113,6 @@ class ReportsScreen extends StatelessWidget {
 
 const bold = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 const body = TextStyle(fontSize: 13, height: 1.4);
-
-Widget _costItem(String title, String val, Color barColor) {
-  return Column(
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title),
-          Text(val, style: bold),
-        ],
-      ),
-      const SizedBox(height: 5),
-      Container(
-        height: 10,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: barColor.withOpacity(.2),
-        ),
-        child: FractionallySizedBox(
-          widthFactor: .8,
-          alignment: Alignment.centerLeft,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: barColor,
-            ),
-          ),
-        ),
-      ),
-      const SizedBox(height: 15),
-    ],
-  );
-}
 
 Widget _filterChips() {
   return Row(
