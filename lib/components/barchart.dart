@@ -27,8 +27,8 @@ class CostDistributionChart extends StatelessWidget {
 
           _barRow(
             title: 'Fuel',
-            value: 22000,
-            maxValue: 30000,
+            value: 2200,
+            maxValue: 3000,
             color: Colors.red.shade700,
           ),
 
@@ -36,8 +36,8 @@ class CostDistributionChart extends StatelessWidget {
 
           _barRow(
             title: 'Parts',
-            value: 18000,
-            maxValue: 30000,
+            value: 1800,
+            maxValue: 3000,
             color: Colors.grey.shade800,
           ),
 
@@ -45,8 +45,8 @@ class CostDistributionChart extends StatelessWidget {
 
           _barRow(
             title: 'Service/Labor',
-            value: 12000,
-            maxValue: 30000,
+            value: 1200,
+            maxValue: 3000,
             color: Colors.grey.shade400,
           ),
         ],

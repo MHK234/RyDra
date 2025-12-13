@@ -30,9 +30,6 @@ class ReportsScreen extends StatelessWidget {
             children: [
               topnavbar(),
               const SizedBox(height: 15),
-
-              _filterChips(),
-
               const SizedBox(height: 18),
 
               const Text(
@@ -113,18 +110,6 @@ class ReportsScreen extends StatelessWidget {
 
 const bold = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 const body = TextStyle(fontSize: 13, height: 1.4);
-
-Widget _filterChips() {
-  return Row(
-    children: [
-      _chip("12 Months"),
-      const SizedBox(width: 8),
-      _chip("YTD"),
-      const SizedBox(width: 8),
-      _chip("Custom Range"),
-    ],
-  );
-}
 
 Widget _chip(String text) {
   return Container(
