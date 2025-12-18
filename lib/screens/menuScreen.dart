@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rydra/components/bottomNavBar.dart';
 import 'package:rydra/components/topNavBar.dart';
+import 'package:rydra/screens/terms&conditions.dart';
 
 class MenuScreen extends StatelessWidget {
   static const routeName = "/menu";
@@ -94,7 +95,19 @@ class MenuScreen extends StatelessWidget {
                 title: "Units & Currency",
               ),
               _menuTile(icon: Icons.support_agent, title: "Help & Support"),
-              _menuTile(icon: Icons.description, title: "Terms & Privacy"),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => TermsConditionsScreen(),
+                    ),
+                  ),
+                },
+                child: _menuTile(
+                  icon: Icons.description,
+                  title: "Terms & Privacy",
+                ),
+              ),
 
               const SizedBox(height: 90),
             ],
