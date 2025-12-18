@@ -134,6 +134,7 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
                       fontSize: 20,
                       letterSpacing: 1.5,
                       fontFamily: "Sigmar",
+                      color: Colors.white,
                     ),
                   ),
                 ),

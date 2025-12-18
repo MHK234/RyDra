@@ -5,13 +5,15 @@ class InputField extends StatelessWidget {
   final TextEditingController controller;
   final bool isNumber;
   final bool isPassword;
+  final int maxLines;
 
   const InputField({
     super.key,
     required this.hint,
     required this.controller,
-    required this.isNumber,
-    required this.isPassword,
+    this.isNumber = false,
+    this.isPassword = false,
+    this.maxLines = 1,
   });
 
   @override
@@ -19,8 +21,9 @@ class InputField extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: isPassword,
-      keyboardType: isNumber ? TextInputType.number : TextInputType.name,
-      decoration: InputDecoration(
+      maxLines: maxLines,
+      keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+      decoration: const InputDecoration(hintText: '').copyWith(
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey),
         enabledBorder: const UnderlineInputBorder(
