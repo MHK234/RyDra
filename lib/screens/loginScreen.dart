@@ -91,6 +91,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                 controller: emailController,
                 isNumber: false,
                 isPassword: false,
+                type: TextInputType.emailAddress,
               ),
 
               const SizedBox(height: 7),
@@ -99,6 +100,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                 controller: passwordController,
                 isNumber: false,
                 isPassword: true,
+                type: TextInputType.text,
               ),
 
               Align(

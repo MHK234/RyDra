@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
     this.isNumber = false,
     this.isPassword = false,
     this.maxLines = 1,
+    required TextInputType type,
   });
 
   @override

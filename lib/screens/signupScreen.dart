@@ -92,6 +92,7 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
                 controller: emailController,
                 isNumber: false,
                 isPassword: false,
+                type: TextInputType.emailAddress,
               ),
 
               const SizedBox(height: 6),
@@ -100,6 +101,7 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
                 controller: passwordController,
                 isNumber: false,
                 isPassword: true,
+                type: TextInputType.text,
               ),
 
               const SizedBox(height: 6),
@@ -108,6 +110,7 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
                 controller: confirmPasswordController,
                 isNumber: false,
                 isPassword: true,
+                type: TextInputType.text,
               ),
 
               const SizedBox(height: 12),

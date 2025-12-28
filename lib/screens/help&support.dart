@@ -52,12 +52,17 @@ class HelpSupportScreen extends StatelessWidget {
                     InputField(
                       hint: 'Enter Title',
                       controller: titleController,
+                      type: TextInputType.text,
                     ),
 
                     const SizedBox(height: 16),
 
                     /// Email Field
-                    InputField(hint: 'Email', controller: emailController),
+                    InputField(
+                      hint: 'Email',
+                      controller: emailController,
+                      type: TextInputType.emailAddress,
+                    ),
 
                     const SizedBox(height: 16),
 
@@ -66,6 +71,7 @@ class HelpSupportScreen extends StatelessWidget {
                       hint: 'Explanation',
                       maxLines: 6,
                       controller: contentController,
+                      type: TextInputType.text,
                     ),
 
                     const SizedBox(height: 40),

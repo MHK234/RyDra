@@ -44,6 +44,7 @@ class _BikedetailsState extends State<Bikedetails> {
                 controller: nameController,
                 isNumber: false,
                 isPassword: false,
+                type: TextInputType.text,
               ),
               const SizedBox(height: 20),
 
@@ -85,11 +86,13 @@ class _BikedetailsState extends State<Bikedetails> {
                 controller: bikeModelController,
                 isNumber: true,
                 isPassword: false,
+                type: TextInputType.number,
               ),
               const SizedBox(height: 20),
 
               InputField(
                 hint: 'Enter Odometer Reading',
+                type: TextInputType.number,
                 controller: odometerController,
                 isNumber: true,
                 isPassword: false,
