@@ -18,7 +18,9 @@ class ReportsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         shape: const CircleBorder(),
         child: const Icon(Icons.add, color: Colors.black),
-        onPressed: () {},
+        onPressed: () {
+          _showMaintenancePopup(context);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
@@ -85,7 +87,7 @@ class ReportsScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: const Color(0xff2E4E6F),
                     padding: const EdgeInsets.all(16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -141,5 +143,116 @@ Widget _sectionCard({required Widget child}) {
       ],
     ),
     child: child,
+  );
+}
+
+void _showMaintenancePopup(BuildContext context) {
+  final TextEditingController odometerCtrl = TextEditingController();
+  final TextEditingController costCtrl = TextEditingController();
+  final TextEditingController notesCtrl = TextEditingController();
+
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Title
+                const Text(
+                  'Add Maintenance Log',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+
+                const SizedBox(height: 16),
+
+                _input(
+                  'Odometer Reading (KM)',
+                  odometerCtrl,
+                  type: TextInputType.number,
+                ),
+
+                _input('Total Cost', costCtrl, type: TextInputType.number),
+
+                _input('Notes / Details', notesCtrl, maxLines: 3),
+
+                const SizedBox(height: 20),
+
+                /// SAVE BUTTON
+                SizedBox(
+                  width: double.infinity,
+                  height: 45,
+                  child: ElevatedButton.icon(
+                    label: const Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff2E4E6F),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context); // close popup
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Data Saved Successfully'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                /// CANCEL
+                Center(
+                  child: TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Widget _input(
+  String hint,
+  TextEditingController controller, {
+  int maxLines = 1,
+  TextInputType type = TextInputType.text,
+}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 12),
+    child: TextField(
+      controller: controller,
+      maxLines: maxLines,
+      keyboardType: type,
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: Colors.grey.shade100,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    ),
   );
 }

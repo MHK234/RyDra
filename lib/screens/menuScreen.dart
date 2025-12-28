@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rydra/components/bottomNavBar.dart';
 import 'package:rydra/components/topNavBar.dart';
+import 'package:rydra/screens/ProfileScreen.dart';
 import 'package:rydra/screens/help&support.dart';
 import 'package:rydra/screens/terms&conditions.dart';
 
@@ -44,35 +45,48 @@ class MenuScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.motorcycle, size: 30),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(Icons.motorcycle, size: 30),
 
-                    const SizedBox(width: 14),
+                      const SizedBox(width: 14),
 
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hamza",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hamza",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Honda CB350 RS",
-                          style: TextStyle(color: Colors.grey, fontSize: 13),
-                        ),
-                      ],
-                    ),
+                          Text(
+                            "Honda Pridor",
+                            style: TextStyle(color: Colors.grey, fontSize: 13),
+                          ),
+                        ],
+                      ),
 
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("[ View Profile > ]"),
-                    ),
-                  ],
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text("View Profile"),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
