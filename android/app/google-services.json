@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "552448988506",
+    "project_id": "rydra-668dd",
+    "storage_bucket": "rydra-668dd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552448988506:android:b98cdcc00977535b1acf63",
+        "android_client_info": {
+          "package_name": "com.example.rydra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxDrX-omzY5FmtHQHJEJe1Z-P3rlkhQmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
