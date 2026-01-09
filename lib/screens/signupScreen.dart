@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rydra/components/authservice.dart';
 import 'package:rydra/components/inputfield.dart';
+import 'package:rydra/components/popupDialog.dart';
 import 'package:rydra/screens/bikeDetails.dart';
 import 'package:rydra/screens/loginScreen.dart';
 import '../components/bottomClipper.dart';
@@ -42,6 +44,44 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final _authService = AuthService();
+
+  bool _loading = false;
+
+  void signup() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
+      return;
+    }
+
+    setState(() => _loading = true);
+
+    try {
+      final user = await _authService.signUp(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      if (user != null) {
+        await StatusPopup.show(
+          context,
+          message: "Signup Successful",
+          type: PopupType.success,
+        );
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      await StatusPopup.show(
+        context,
+        message: e.toString(),
+        type: PopupType.failure,
+      );
+    }
+
+    setState(() => _loading = false);
+  }
 
   @override
   void dispose() {
@@ -126,10 +166,7 @@ class _SignupScreenContentState extends State<SignupScreenContent> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => Bikedetails()),
-                    );
+                    signup();
                   },
                   child: const Text(
                     "SIGNUP",

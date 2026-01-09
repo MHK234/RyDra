@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rydra/components/authservice.dart';
 import 'package:rydra/components/inputfield.dart';
+import 'package:rydra/components/popupDialog.dart';
 import 'package:rydra/screens/bikeDetails.dart';
 import 'package:rydra/screens/signupScreen.dart' hide BottomWaveClipper;
 import '../components/bottomClipper.dart';
@@ -42,6 +44,41 @@ class LoginScreenContent extends StatefulWidget {
 class _LoginScreenContentState extends State<LoginScreenContent> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+
+  bool loading = false;
+
+  void login() async {
+    setState(() => loading = true);
+    try {
+      final user = await _authService.login(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      if (user != null) {
+        await StatusPopup.show(
+          context,
+          message: "Login Successful",
+          type: PopupType.success,
+        );
+
+        if (!context.mounted) return;
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const Bikedetails()),
+        );
+      }
+    } catch (e) {
+      StatusPopup.show(
+        context,
+        message: "Invalid email or password",
+        type: PopupType.failure,
+      );
+    }
+    setState(() => loading = false);
+  }
 
   @override
   void dispose() {
@@ -127,10 +164,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => Bikedetails()),
-                    );
+                    login();
                   },
                   child: const Text(
                     "LOGIN",
